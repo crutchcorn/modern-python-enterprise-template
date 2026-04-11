@@ -1,0 +1,13 @@
+--- setup.py.orig	2026-04-11 04:31:14
++++ setup.py	2026-04-11 04:31:14
+@@ -1,3 +1,10 @@
++import os as _os
++# Fix Bazel relative CC path: aspect_rules_py sets CC to a relative path
++# that is invalid from the sdist build working directory.
++_cc = _os.environ.get('CC', '')
++if _cc and not _os.path.isabs(_cc) and not _os.path.exists(_cc):
++    del _os.environ['CC']
++
+ import sys
+ 
+ import os.path

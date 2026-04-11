@@ -3,19 +3,61 @@ module(
     version = "0.0.1",
 )
 
+bazel_dep(name = "aspect_rules_py", version = "1.11.2")
+bazel_dep(name = "platforms", version = "1.0.0")
+bazel_dep(name = "rules_cc", version = "0.2.17")
 bazel_dep(name = "rules_python", version = "1.9.0")
 bazel_dep(name = "gazelle", version = "0.47.0", repo_name = "bazel_gazelle")
 bazel_dep(name = "rules_python_gazelle_plugin", version = "1.9.0")
 
-python = use_extension("@rules_python//python/extensions:python.bzl", "python")
-python.toolchain(
+# Python interpreter provisioning from python-build-standalone
+interpreters = use_extension("@aspect_rules_py//py/unstable:extension.bzl", "python_interpreters")
+interpreters.toolchain(
     python_version = "3.14",
+    is_default = True,
 )
+use_repo(interpreters, "python_interpreters")
 
-pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
-pip.parse(
+register_toolchains("@python_interpreters//:all")
+
+# Native build toolchain for sdist packages
+tools = use_extension("@aspect_rules_py//py:extensions.bzl", "py_tools")
+tools.rules_py_tools()
+use_repo(tools, "rules_py_tools")
+
+register_toolchains("@rules_py_tools//:all")
+
+# Dependency resolution via uv (reads uv.lock directly)
+uv = use_extension("@aspect_rules_py//uv/unstable:extension.bzl", "uv")
+uv.declare_hub(hub_name = "pypi")
+uv.project(
     hub_name = "pypi",
-    python_version = "3.14",
-    requirements_lock = "//:requirements_lock.txt",
+    lock = "//:uv.lock",
+    pyproject = "//:pyproject.toml",
+    default_build_dependencies = ["setuptools", "build"],
 )
-use_repo(pip, "pypi")
+uv.override_package(
+    name = "shared",
+    lock = "//:uv.lock",
+    target = "//packages/shared/src/shared",
+)
+uv.override_package(
+    name = "backend",
+    lock = "//:uv.lock",
+    target = "//apps/backend",
+)
+uv.override_package(
+    name = "modern-python-enterprise-template",
+    lock = "//:uv.lock",
+    target = "//:root",
+)
+uv.override_package(
+    name = "httptools",
+    lock = "//:uv.lock",
+    pre_build_patches = [
+        "//patches:httptools-relax-setuptools.patch",
+        "//patches:httptools-fix-cc.patch",
+    ],
+    pre_build_patch_strip = 0,
+)
+use_repo(uv, "pypi")

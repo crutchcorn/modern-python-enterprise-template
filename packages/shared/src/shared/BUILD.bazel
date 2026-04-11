@@ -1,11 +1,11 @@
-load("@rules_python//python:defs.bzl", "py_library")
+load("@aspect_rules_py//py:defs.bzl", "py_library")
 load("//tools:mypyc.bzl", "mypyc_library")
 
 py_library(
     name = "shared",
     srcs = ["__init__.py"],
     imports = [".."],
-    visibility = ["//:__subpackages__"],
+    visibility = ["//visibility:public"],
 )
 
 mypyc_library(

@@ -2,4 +2,14 @@ common --enable_bzlmod
 
 build --symlink_prefix=.bazel/
 
+# Use the dev venv which includes all workspace member dependencies
+common --@pypi//venv=dev
+
+# Pin Python version explicitly for correct wheel ABI matching
+common --@aspect_rules_py//py:python_version=3.14
+common --@rules_python//python/config_settings:python_version=3.14
+
+# Use free-threaded Python (no GIL)
+common --@aspect_rules_py//py/private/interpreter:freethreaded=true
+
 test --test_output=errors

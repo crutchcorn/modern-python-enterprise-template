@@ -1,9 +1,9 @@
-load("@rules_python//python:defs.bzl", "py_library")
+load("@aspect_rules_py//py:defs.bzl", "py_library")
 
 py_library(
     name = "backend",
     srcs = ["main.py"],
-    visibility = ["//:__subpackages__"],
+    visibility = ["//visibility:public"],
     deps = [
         "//packages/shared/src/shared",
         "@pypi//fastapi",
