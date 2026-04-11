@@ -23,6 +23,8 @@ gazelle-manifest = "bazel run //:gazelle_python_manifest.update"
 gazelle = "bazel run //:gazelle"
 build = "bazel build //..."
 test = "bazel test //..."
+deploy-mypyc = "uv run python tools/deploy_mypyc.py"
+clean-mypyc = "uv run python tools/deploy_mypyc.py --clean"
 
 [tool.poe.tasks.sync]
 help = "Sync Bazel BUILD files after adding deps or packages"

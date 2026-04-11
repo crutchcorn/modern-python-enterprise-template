@@ -69,8 +69,14 @@ def main() -> None:
         for root, _dirs, files in os.walk(tmpdir):
             for f in files:
                 if f.endswith(ext_suffix):
-                    shutil.copy2(os.path.join(root, f), os.path.join(out_pkg, f))
-                    print(f"  compiled: {args.package_name}/{f}")
+                    # Rename <package>.cpython-XXX.so -> __init__.cpython-XXX.so
+                    # so Python loads it as the package's __init__ module
+                    dest_name = f
+                    pkg_prefix = args.package_name + "."
+                    if f.startswith(pkg_prefix):
+                        dest_name = "__init__." + f[len(pkg_prefix):]
+                    shutil.copy2(os.path.join(root, f), os.path.join(out_pkg, dest_name))
+                    print(f"  compiled: {args.package_name}/{dest_name}")
 
 
 if __name__ == "__main__":
