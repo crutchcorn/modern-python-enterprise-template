@@ -1,0 +1,30 @@
+load("@aspect_rules_js//js:defs.bzl", "js_library")
+load("@aspect_rules_js//npm:defs.bzl", "npm_package")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+
+npm_link_all_packages(name = "node_modules")
+
+js_library(
+    name = "components",
+    srcs = glob(
+        [
+            "src/**/*.tsx",
+            "src/**/*.ts",
+        ],
+        allow_empty = True,
+    ) + [
+        "package.json",
+        "tsconfig.json",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":node_modules/@types/react",
+        ":node_modules/@types/react-dom",
+    ],
+)
+
+npm_package(
+    name = "pkg",
+    srcs = [":components"],
+    visibility = ["//visibility:public"],
+)

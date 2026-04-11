@@ -26,6 +26,7 @@ SRCS = glob(
 
 BUILD_DEPS = [":node_modules/" + d for d in [
     "@vitejs/plugin-react",
+    "components",
     "vite",
     "react",
     "react-dom",

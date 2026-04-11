@@ -73,6 +73,11 @@ uv.override_package(
     target = "//apps/frontend:build",
 )
 uv.override_package(
+    name = "components",
+    lock = "//:uv.lock",
+    target = "//packages/components",
+)
+uv.override_package(
     name = "httptools",
     lock = "//:uv.lock",
     pre_build_patches = [

@@ -1,0 +1,5 @@
+[project]
+name = "components"
+version = "0.0.1"
+description = "Shared React components for the modern Python enterprise template."
+readme = "README.md"

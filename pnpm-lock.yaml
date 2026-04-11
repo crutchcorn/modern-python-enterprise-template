@@ -16,6 +16,9 @@ importers:
 
   apps/frontend:
     dependencies:
+      components:
+        specifier: workspace:*
+        version: link:../../packages/components
       react:
         specifier: ^19.2.4
         version: 19.2.5
@@ -62,6 +65,25 @@ importers:
       vitest:
         specifier: ^4.1.4
         version: 4.1.4(@types/node@24.12.2)(vite@8.0.8(@types/node@24.12.2)(jiti@2.6.1)(yaml@2.8.3))
+
+  packages/components:
+    dependencies:
+      react:
+        specifier: ^19.0.0
+        version: 19.2.5
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.5(react@19.2.5)
+    devDependencies:
+      '@types/react':
+        specifier: ^19.2.14
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.14)
+      typescript:
+        specifier: ~6.0.2
+        version: 6.0.2
 
   packages/shared: {}
 
