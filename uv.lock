@@ -401,6 +401,16 @@ name = "modern-python-enterprise-template"
 version = "0.0.1"
 source = { virtual = "." }
 
+[package.dev-dependencies]
+dev = [
+    { name = "poethepoet" },
+]
+
+[package.metadata]
+
+[package.metadata.requires-dev]
+dev = [{ name = "poethepoet", specifier = ">=0.44.0" }]
+
 [[package]]
 name = "mypy"
 version = "1.20.0"

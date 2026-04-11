@@ -10,3 +10,13 @@ members = [
     "apps/*",
     "packages/*",
 ]
+
+[dependency-groups]
+dev = [
+    "poethepoet>=0.44.0"
+]
+
+[tool.poe.tasks]
+gen_reqs = "bazel run //:generate_requirements_lock" # Run this after adding new dependencies, even via UV
+build = "bazel build"
+test = "bazel test"

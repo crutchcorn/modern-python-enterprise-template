@@ -1,4 +1,3 @@
-- [ ] Add Bazel monorepo support
 - [ ] Add Sentry
 - [ ] Add Vulture dead code analysis
 - [ ] Add MyPyC usage
