@@ -1,0 +1,57 @@
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@npm//apps/frontend:vite/package_json.bzl", vite_bin = "bin")
+load("@npm//apps/frontend:vitest/package_json.bzl", vitest_bin = "bin")
+
+# Link npm packages for this workspace member
+npm_link_all_packages(name = "node_modules")
+
+SRCS = glob(
+    [
+        "src/**/*.css",
+        "src/**/*.svg",
+        "src/**/*.png",
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "public/**/*.svg",
+    ],
+    allow_empty = True,
+) + [
+    "vite.config.ts",
+    "package.json",
+    "tsconfig.json",
+    "tsconfig.app.json",
+    "tsconfig.node.json",
+    "index.html",
+]
+
+BUILD_DEPS = [":node_modules/" + d for d in [
+    "@vitejs/plugin-react",
+    "vite",
+    "react",
+    "react-dom",
+]]
+
+vite_bin.vite(
+    name = "build",
+    srcs = BUILD_DEPS + SRCS,
+    args = ["build"],
+    chdir = package_name(),
+    out_dirs = ["dist"],
+    visibility = ["//visibility:public"],
+)
+
+vitest_bin.vitest_test(
+    name = "test",
+    args = [
+        "run",
+        "--config=vite.config.ts",
+    ],
+    chdir = package_name(),
+    data = BUILD_DEPS + SRCS + [":node_modules/vitest"] + glob(
+        [
+            "src/**/*.test.ts",
+            "src/**/*.test.tsx",
+        ],
+        allow_empty = True,
+    ),
+)

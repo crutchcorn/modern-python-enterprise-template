@@ -1,5 +1,6 @@
 - [ ] Add React + Vite + PNPM FE monorepo infra
     - [ ] Add Bazel support
+- [ ] Fix various Bazel hard-coded paths
 - [ ] Add Sentry
 - [ ] Add Vulture dead code analysis
 - [ ] Add Autofix CI

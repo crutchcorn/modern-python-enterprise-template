@@ -1,6 +1,10 @@
 load("@aspect_rules_py//py:defs.bzl", "py_library")
 load("@aspect_rules_py//uv/unstable:defs.bzl", "gazelle_python_manifest")
 load("@bazel_gazelle//:def.bzl", "gazelle", "gazelle_binary")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+
+# Link npm packages for the root workspace
+npm_link_all_packages(name = "node_modules")
 
 # Empty target for the root workspace package override
 py_library(
