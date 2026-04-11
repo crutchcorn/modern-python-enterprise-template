@@ -1,0 +1,20 @@
+[project]
+name = "modern-python-enterprise-template"
+version = "0.0.1"
+description = "A modern Python template for enterprise applications."
+readme = "README.md"
+requires-python = ">=3.14"
+
+[dependency-groups]
+dev = [
+    "mypy[mypyc]>=1.19.1",
+    "poethepoet>=0.44.0",
+    "pytest>=9.0.3",
+    "ruff>=0.15.10",
+]
+
+[tool.poe.tasks]
+lint = "ruff check ."
+typecheck = "mypy ."
+test = "pytest tests"
+format = "ruff format ."
