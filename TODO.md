@@ -1,3 +1,5 @@
+- [ ] Add React + Vite + PNPM FE monorepo infra
+    - [ ] Add Bazel support
 - [ ] Add Sentry
 - [ ] Add Vulture dead code analysis
 - [ ] Add Autofix CI

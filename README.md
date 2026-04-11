@@ -1,3 +1,13 @@
+# Template Features
+
+- UV for Python dependency management
+- MyPy for static type checking
+- Ruff for linting and formatting
+- Bazel monorepo for cached Python apps and packages builds and tests
+- MyPyC for compiling Python code to C for improved performance
+- GIL-free Python code for better concurrency
+- PyTest for testing
+
 # Install
 
 - Install Bazelisk: https://github.com/bazelbuild/bazelisk?tab=readme-ov-file#installation
