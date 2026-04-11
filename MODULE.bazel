@@ -18,6 +18,19 @@ interpreters.toolchain(
 )
 use_repo(interpreters, "python_interpreters")
 
+# Prefer freethreaded+pgo+lto over freethreaded+debug.
+# register_toolchains(":all") uses alphabetical order, and "debug" < "pgo_lto",
+# so we must register the optimized variants first to give them priority.
+register_toolchains(
+    "@python_interpreters//:python_3_14_aarch64_apple_darwin_freethreaded_pgo_lto",
+    "@python_interpreters//:python_3_14_aarch64_apple_darwin_freethreaded_pgo_lto_exec_tools",
+    "@python_interpreters//:python_3_14_aarch64_unknown_linux_gnu_freethreaded_pgo_lto",
+    "@python_interpreters//:python_3_14_aarch64_unknown_linux_gnu_freethreaded_pgo_lto_exec_tools",
+    "@python_interpreters//:python_3_14_x86_64_apple_darwin_freethreaded_pgo_lto",
+    "@python_interpreters//:python_3_14_x86_64_apple_darwin_freethreaded_pgo_lto_exec_tools",
+    "@python_interpreters//:python_3_14_x86_64_unknown_linux_gnu_freethreaded_pgo_lto",
+    "@python_interpreters//:python_3_14_x86_64_unknown_linux_gnu_freethreaded_pgo_lto_exec_tools",
+)
 register_toolchains("@python_interpreters//:all")
 
 # Native build toolchain for sdist packages
