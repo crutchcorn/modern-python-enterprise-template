@@ -30,9 +30,10 @@ dev = [
 [tool.poe.tasks]
 _gazelle-manifest = "bazel run //:gazelle_python_manifest.update"
 _gazelle = "bazel run //:gazelle"
+_update-module-overrides = "uv run python tools/update_module_overrides.py"
 build = "bazel build //..."
 test = "bazel test //..."
 
 [tool.poe.tasks.sync]
-help = "Sync Bazel BUILD files after adding deps or packages"
-sequence = ["_gazelle-manifest", "_gazelle"]
+help = "Sync Bazel BUILD files after adding and app, deps or packages"
+sequence = ["_update-module-overrides", "_gazelle-manifest", "_gazelle"]

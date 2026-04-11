@@ -52,31 +52,13 @@ uv.project(
     pyproject = "//:pyproject.toml",
     default_build_dependencies = ["setuptools", "build"],
 )
-uv.override_package(
-    name = "shared",
-    lock = "//:uv.lock",
-    target = "//packages/shared/src/shared",
-)
-uv.override_package(
-    name = "backend",
-    lock = "//:uv.lock",
-    target = "//apps/backend",
-)
-uv.override_package(
-    name = "modern-python-enterprise-template",
-    lock = "//:uv.lock",
-    target = "//:root",
-)
-uv.override_package(
-    name = "frontend",
-    lock = "//:uv.lock",
-    target = "//apps/frontend:build",
-)
-uv.override_package(
-    name = "components",
-    lock = "//:uv.lock",
-    target = "//packages/components",
-)
+# BEGIN uv.override_package workspace members
+uv.override_package(name = "modern-python-enterprise-template", lock = "//:uv.lock", target = "//:root")
+uv.override_package(name = "backend", lock = "//:uv.lock", target = "//apps/backend")
+uv.override_package(name = "frontend", lock = "//:uv.lock", target = "//apps/frontend:build")
+uv.override_package(name = "components", lock = "//:uv.lock", target = "//packages/components")
+uv.override_package(name = "shared", lock = "//:uv.lock", target = "//packages/shared/src/shared")
+# END uv.override_package workspace members
 uv.override_package(
     name = "httptools",
     lock = "//:uv.lock",

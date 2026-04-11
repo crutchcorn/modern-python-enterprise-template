@@ -30,7 +30,7 @@ pnpm run # List all frontend-related scripts
 
 ## Bazel
 
-When a new dependency is added to the project (either via `uv` or a new package added to the monorepo), run the following command at root to update Bazel's resolves:
+When a new dependency or app is added to the project (either via `uv` or a new package added to the monorepo), run the following command at root to update Bazel's resolves:
 
 ```shell
 poe sync
