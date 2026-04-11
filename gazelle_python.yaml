@@ -1,0 +1,59 @@
+# GENERATED FILE - DO NOT EDIT!
+#
+# To update this file, run:
+#   bazel run //:gazelle_python_manifest.update
+
+---
+manifest:
+  modules_mapping:
+    annotated_doc: annotated_doc
+    annotated_types: annotated_types
+    anyio: anyio
+    certifi: certifi
+    click: click
+    dns: dnspython
+    dotenv: python_dotenv
+    email_validator: email_validator
+    fastapi: fastapi
+    fastapi_cli: fastapi_cli
+    fastapi_cloud_cli: fastapi_cloud_cli
+    fastar: fastar
+    h11: h11
+    httpcore: httpcore
+    httptools: httptools
+    httpx: httpx
+    idna: idna
+    iniconfig: iniconfig
+    jinja2: jinja2
+    markdown_it: markdown_it_py
+    markupsafe: markupsafe
+    mdurl: mdurl
+    multipart: python_multipart
+    packaging: packaging
+    pluggy: pluggy
+    py: pytest
+    pydantic: pydantic
+    pydantic_core: pydantic_core
+    pydantic_extra_types: pydantic_extra_types
+    pydantic_settings: pydantic_settings
+    pygments: pygments
+    pytest: pytest
+    python_multipart: python_multipart
+    rich: rich
+    rich_toolkit: rich_toolkit
+    rignore: rignore
+    sentry_sdk: sentry_sdk
+    shellingham: shellingham
+    starlette: starlette
+    typer: typer
+    typing_extensions: typing_extensions
+    typing_inspection: typing_inspection
+    urllib3: urllib3
+    uvicorn: uvicorn
+    uvloop: uvloop
+    watchfiles: watchfiles
+    websockets: websockets
+    yaml: pyyaml
+  pip_repository:
+    name: pypi
+integrity: 2cccfd41fcc1671c5350bd95e0f0bac04b22a544dcdd17f40a43490166907a16

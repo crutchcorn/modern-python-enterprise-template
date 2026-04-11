@@ -1,10 +1,7 @@
-load("@rules_python//python:py_test.bzl", "py_test")
+load("@rules_python//python:defs.bzl", "py_test")
 
 py_test(
     name = "test_hello",
     srcs = ["test_hello.py"],
-    deps = [
-        "//packages/shared/src/shared",
-        "@pypi//pytest",
-    ],
+    deps = ["//packages/shared/src/shared"],
 )

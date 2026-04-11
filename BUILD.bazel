@@ -1,2 +1,36 @@
-# Root BUILD file — no targets needed.
-# Run `poe gen-reqs` to regenerate requirements_lock.txt via uv export.
+load("@bazel_gazelle//:def.bzl", "gazelle", "gazelle_binary")
+load("@pypi//:requirements.bzl", "all_whl_requirements")
+load("@rules_python_gazelle_plugin//manifest:defs.bzl", "gazelle_python_manifest")
+load("@rules_python_gazelle_plugin//modules_mapping:def.bzl", "modules_mapping")
+
+# BEGIN gazelle:resolve local packages
+# gazelle:resolve py shared //packages/shared/src/shared
+# gazelle:resolve py shared.hello //packages/shared/src/shared
+# END gazelle:resolve local packages
+
+# This maps Python imports to their pip packages for Gazelle.
+modules_mapping(
+    name = "modules_map",
+    wheels = all_whl_requirements,
+)
+
+# Manifest file for Gazelle to resolve third-party imports.
+# Run `bazel run //:gazelle_python_manifest.update` to refresh.
+gazelle_python_manifest(
+    name = "gazelle_python_manifest",
+    modules_mapping = ":modules_map",
+    pip_repository_name = "pypi",
+    requirements = "//:requirements_lock.txt",
+)
+
+gazelle_binary(
+    name = "gazelle_binary",
+    languages = [
+        "@rules_python_gazelle_plugin//python",
+    ],
+)
+
+gazelle(
+    name = "gazelle",
+    gazelle = ":gazelle_binary",
+)

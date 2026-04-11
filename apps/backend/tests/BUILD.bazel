@@ -1,12 +1,11 @@
-load("@rules_python//python:py_test.bzl", "py_test")
+load("@rules_python//python:defs.bzl", "py_test")
 
 py_test(
     name = "test_main",
     srcs = ["test_main.py"],
     deps = [
-        "//apps/backend:backend_lib",
+        "//apps/backend",
         "@pypi//fastapi",
-        "@pypi//httpx",
-        "@pypi//pytest",
+        "@pypi//httpx",  # keep: required by fastapi.testclient at runtime
     ],
 )
