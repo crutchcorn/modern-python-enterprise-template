@@ -17,10 +17,7 @@ js_library(
         "tsconfig.json",
     ],
     visibility = ["//visibility:public"],
-    deps = [
-        ":node_modules/@types/react",
-        ":node_modules/@types/react-dom",
-    ],
+    deps = [":node_modules"],
 )
 
 npm_package(
