@@ -28,11 +28,11 @@ dev = [
 shared = { workspace = true }
 
 [tool.poe.tasks]
-_dev = "uv run fastapi dev --reload-dir . --reload-dir ../../packages"
+_dev = {cmd = "uv run fastapi dev --reload-dir . --reload-dir ../../packages", env = {PYTHON_GIL = "0"}}
 _build-mypyc = "bazel build //..."
 _deploy-mypyc = "uv run python ../../tools/deploy_mypyc.py"
 _clean-mypyc = "uv run python ../../tools/deploy_mypyc.py --clean"
-_fastapi-run = "uv run fastapi run"
+_fastapi-run = {cmd = "uv run fastapi run", env = {PYTHON_GIL = "0"}}
 lint = "uv run ruff check ."
 typecheck = "uv run mypy ."
 test = "uv run pytest tests"
