@@ -28,9 +28,10 @@ dev = [
 shared = { workspace = true }
 
 [tool.poe.tasks]
-dev = "uv run fastapi dev --reload-dir . --reload-dir ../../packages"
+_dev = "uv run fastapi dev --reload-dir . --reload-dir ../../packages"
 _build-mypyc = "bazel build //..."
 _deploy-mypyc = "uv run python ../../tools/deploy_mypyc.py"
+_clean-mypyc = "uv run python ../../tools/deploy_mypyc.py --clean"
 _fastapi-run = "uv run fastapi run"
 lint = "uv run ruff check ."
 typecheck = "uv run mypy ."
@@ -40,3 +41,7 @@ format = "uv run ruff format ."
 [tool.poe.tasks.start]
 help = "Build mypyc extensions and start FastAPI in production mode"
 sequence = ["_build-mypyc", "_deploy-mypyc", "_fastapi-run"]
+
+[tool.poe.tasks.dev]
+help = "Start FastAPI in development mode with auto-reload"
+sequence = ["_clean-mypyc", "_dev"]
