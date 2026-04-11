@@ -1,0 +1,24 @@
+[project]
+name = "backend"
+version = "0.0.1"
+description = "A backend service for the modern Python enterprise template."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi[standard]>=0.135.3",
+]
+
+[dependency-groups]
+dev = [
+    "mypy[mypyc]>=1.19.1",
+    "pytest>=9.0.3",
+    "ruff>=0.15.10",
+    "poethepoet>=0.44.0"
+]
+
+[tool.poe.tasks]
+dev = "uv run fastapi dev"
+lint = "uv run ruff check ."
+typecheck = "uv run mypy ."
+test = "uv run pytest tests"
+format = "uv run ruff format ."

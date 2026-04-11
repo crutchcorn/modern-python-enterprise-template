@@ -1,0 +1,6 @@
+- [ ] Add Bazel monorepo support
+- [ ] Add Sentry
+- [ ] Add Vulture dead code analysis
+- [ ] Add MyPyC usage
+- [ ] Test and validate Python GIL-less
+- [ ] Add Autofix CI
