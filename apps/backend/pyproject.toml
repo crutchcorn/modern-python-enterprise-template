@@ -28,7 +28,7 @@ dev = [
 shared = { workspace = true }
 
 [tool.poe.tasks]
-dev = "uv run fastapi dev"
+dev = "uv run fastapi dev --reload-dir . --reload-dir ../../packages"
 lint = "uv run ruff check ."
 typecheck = "uv run mypy ."
 test = "uv run pytest tests"
