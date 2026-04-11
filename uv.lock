@@ -5,6 +5,7 @@ requires-python = ">=3.14"
 [manifest]
 members = [
     "backend",
+    "frontend",
     "modern-python-enterprise-template",
     "shared",
 ]
@@ -250,6 +251,11 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/27/5d/9ace4277834d59d5c89c0ffa0fc9805db4e4bcba1da9e54356ae18c9583b/fastar-0.10.0-cp314-cp314t-win_amd64.whl", hash = "sha256:1df45800337eb8f70f256c5139953e1910189fc3578adc81d135818529a1df6f", size = 486365, upload-time = "2026-04-08T01:02:20.244Z" },
     { url = "https://files.pythonhosted.org/packages/71/4f/a5b3cfc3e1779c756c4fef790facef12d63088402a718b167b780d4f2ccc/fastar-0.10.0-cp314-cp314t-win_arm64.whl", hash = "sha256:3152a80835ef11cbfaf153037dd694e0014f25d074792b9785421679acdbe179", size = 461150, upload-time = "2026-04-08T01:02:08.47Z" },
 ]
+
+[[package]]
+name = "frontend"
+version = "0.0.1"
+source = { virtual = "apps/frontend" }
 
 [[package]]
 name = "h11"

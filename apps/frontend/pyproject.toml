@@ -1,0 +1,5 @@
+[project]
+name = "frontend"
+version = "0.0.1"
+description = "A frontend service for the modern Python enterprise template."
+readme = "README.md"

@@ -12,17 +12,20 @@
 
 - Install Bazelisk: https://github.com/bazelbuild/bazelisk?tab=readme-ov-file#installation
 - Install UV: https://docs.astral.sh/uv/getting-started/installation/
+- Install Node: https://nodejs.org/en/download 
 
 ```shell
 bazel # To install Bazel via Bazelisk
 uv tool install poethepoet
 uv tool install ruff
+corepack enable # To enable Corepack for managing Node package managers
 ```
 
 # Usage
 
 ```shell
-poe # List all tasks
+poe # List all backend-related tasks
+pnpm run # List all frontend-related scripts
 ```
 
 ## Bazel
