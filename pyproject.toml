@@ -17,6 +17,6 @@ dev = [
 ]
 
 [tool.poe.tasks]
-gen_reqs = "bazel run //:generate_requirements_lock" # Run this after adding new dependencies, even via UV
+gen-reqs = "uv export --no-group dev --group test --no-emit-project --no-emit-workspace --package backend -o requirements_lock.txt"
 build = "bazel build"
 test = "bazel test"

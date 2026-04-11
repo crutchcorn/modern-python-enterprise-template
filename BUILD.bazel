@@ -1,7 +1,2 @@
-load("@rules_uv//uv:pip.bzl", "pip_compile")
-
-pip_compile(
-    name = "generate_requirements_lock",
-    requirements_in = "//:requirements.in",
-    requirements_txt = "//:requirements_lock.txt",
-)
+# Root BUILD file — no targets needed.
+# Run `poe gen-reqs` to regenerate requirements_lock.txt via uv export.
