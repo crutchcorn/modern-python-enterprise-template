@@ -6,8 +6,25 @@ py_binary(
     visibility = ["//:__subpackages__"],
 )
 
+py_binary(
+    name = "mypyc_compile",
+    srcs = ["mypyc_compile.py"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "@pypi//mypy",
+        "@pypi//setuptools",
+    ],
+)
+
 py_library(
     name = "tools",
-    srcs = ["update_gazelle_resolves.py"],
+    srcs = [
+        "mypyc_compile.py",
+        "update_gazelle_resolves.py",
+    ],
     visibility = ["//:__subpackages__"],
+    deps = [
+        "@pypi//mypy",
+        "@pypi//setuptools",
+    ],
 )

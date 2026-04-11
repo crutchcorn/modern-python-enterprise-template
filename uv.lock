@@ -49,6 +49,9 @@ dependencies = [
 ]
 
 [package.dev-dependencies]
+build = [
+    { name = "mypy", extra = ["mypyc"] },
+]
 dev = [
     { name = "mypy", extra = ["mypyc"] },
     { name = "poethepoet" },
@@ -66,6 +69,7 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
+build = [{ name = "mypy", extras = ["mypyc"], specifier = ">=1.19.1" }]
 dev = [
     { name = "mypy", extras = ["mypyc"], specifier = ">=1.19.1" },
     { name = "poethepoet", specifier = ">=0.44.0" },

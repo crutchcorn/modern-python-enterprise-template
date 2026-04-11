@@ -17,12 +17,12 @@ dev = [
 ]
 
 [tool.poe.tasks]
-gen-reqs = "uv export --no-group dev --group test --no-emit-project --no-emit-workspace --package backend -o requirements_lock.txt"
+gen-reqs = "uv export --no-group dev --group test --group build --no-emit-project --no-emit-workspace --package backend --quiet -o requirements_lock.txt"
 gazelle-resolve = "uv run python tools/update_gazelle_resolves.py"
 gazelle-manifest = "bazel run //:gazelle_python_manifest.update"
 gazelle = "bazel run //:gazelle"
-build = "bazel build"
-test = "bazel test"
+build = "bazel build //..."
+test = "bazel test //..."
 
 [tool.poe.tasks.sync]
 help = "Sync Bazel BUILD files after adding deps or packages"

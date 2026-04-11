@@ -1,8 +1,16 @@
 load("@rules_python//python:defs.bzl", "py_library")
+load("//tools:mypyc.bzl", "mypyc_library")
 
 py_library(
     name = "shared",
     srcs = ["__init__.py"],
     imports = [".."],
+    visibility = ["//:__subpackages__"],
+)
+
+mypyc_library(
+    name = "shared_mypyc",
+    package_name = "shared",
+    srcs = ["__init__.py"],
     visibility = ["//:__subpackages__"],
 )

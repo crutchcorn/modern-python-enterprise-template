@@ -6,6 +6,7 @@
 ---
 manifest:
   modules_mapping:
+    0aca9ce3d91742c5b361__mypyc: mypy
     annotated_doc: annotated_doc
     annotated_types: annotated_types
     anyio: anyio
@@ -25,11 +26,20 @@ manifest:
     idna: idna
     iniconfig: iniconfig
     jinja2: jinja2
+    librt.base64: librt
+    librt.internal: librt
+    librt.strings: librt
+    librt.time: librt
+    librt.vecs: librt
     markdown_it: markdown_it_py
     markupsafe: markupsafe
     mdurl: mdurl
     multipart: python_multipart
+    mypy: mypy
+    mypy_extensions: mypy_extensions
+    mypyc: mypy
     packaging: packaging
+    pathspec: pathspec
     pluggy: pluggy
     py: pytest
     pydantic: pydantic
@@ -43,6 +53,7 @@ manifest:
     rich_toolkit: rich_toolkit
     rignore: rignore
     sentry_sdk: sentry_sdk
+    setuptools: setuptools
     shellingham: shellingham
     starlette: starlette
     typer: typer
@@ -56,4 +67,4 @@ manifest:
     yaml: pyyaml
   pip_repository:
     name: pypi
-integrity: 2cccfd41fcc1671c5350bd95e0f0bac04b22a544dcdd17f40a43490166907a16
+integrity: f1f0434f8848e126584fc809f626c4169478afec41a40dbe8a4b83b18f74e55d
