@@ -1,0 +1,14 @@
+[project]
+name = "shared"
+version = "0.0.1"
+description = "A shared library for the modern Python enterprise template."
+readme = "README.md"
+authors = [
+    { name = "Corbin Crutchley", email = "git@crutchcorn.dev" }
+]
+requires-python = ">=3.14"
+dependencies = []
+
+[build-system]
+requires = ["uv_build>=0.11.6,<0.12.0"]
+build-backend = "uv_build"

@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "fastapi[standard]>=0.135.3",
+    "shared"
 ]
 
 [dependency-groups]
@@ -15,6 +16,10 @@ dev = [
     "ruff>=0.15.10",
     "poethepoet>=0.44.0"
 ]
+
+
+[tool.uv.sources]
+shared = { workspace = true }
 
 [tool.poe.tasks]
 dev = "uv run fastapi dev"

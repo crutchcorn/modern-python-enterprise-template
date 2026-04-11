@@ -6,6 +6,7 @@ requires-python = ">=3.14"
 members = [
     "backend",
     "modern-python-enterprise-template",
+    "shared",
 ]
 
 [[package]]
@@ -44,6 +45,7 @@ version = "0.0.1"
 source = { virtual = "apps/backend" }
 dependencies = [
     { name = "fastapi", extra = ["standard"] },
+    { name = "shared" },
 ]
 
 [package.dev-dependencies]
@@ -55,7 +57,10 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "fastapi", extras = ["standard"], specifier = ">=0.135.3" }]
+requires-dist = [
+    { name = "fastapi", extras = ["standard"], specifier = ">=0.135.3" },
+    { name = "shared", editable = "packages/shared" },
+]
 
 [package.metadata.requires-dev]
 dev = [
@@ -754,6 +759,11 @@ sdist = { url = "https://files.pythonhosted.org/packages/4f/db/cfac1baf10650ab4d
 wheels = [
     { url = "https://files.pythonhosted.org/packages/9d/76/f789f7a86709c6b087c5a2f52f911838cad707cc613162401badc665acfe/setuptools-82.0.1-py3-none-any.whl", hash = "sha256:a59e362652f08dcd477c78bb6e7bd9d80a7995bc73ce773050228a348ce2e5bb", size = 1006223, upload-time = "2026-03-09T12:47:15.026Z" },
 ]
+
+[[package]]
+name = "shared"
+version = "0.0.1"
+source = { editable = "packages/shared" }
 
 [[package]]
 name = "shellingham"
