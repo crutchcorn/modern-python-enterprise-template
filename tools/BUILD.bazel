@@ -9,12 +9,34 @@ py_binary(
 py_library(
     name = "tools",
     srcs = [
+        "deploy_mypyc.py",
+        "mypyc_compile.py",
         "update_gazelle_resolves.py",
     ],
     visibility = ["//:__subpackages__"],
+    deps = [
+        "@pypi//mypy",
+        "@pypi//setuptools",
+    ],
 )
 
 exports_files(
     ["mypyc_compile.py"],
     visibility = ["//:__subpackages__"],
+)
+
+py_binary(
+    name = "deploy_mypyc",
+    srcs = ["deploy_mypyc.py"],
+    visibility = ["//:__subpackages__"],
+)
+
+py_binary(
+    name = "mypyc_compile",
+    srcs = ["mypyc_compile.py"],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "@pypi//mypy",
+        "@pypi//setuptools",
+    ],
 )
