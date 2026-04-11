@@ -1,17 +1,13 @@
-# GENERATED FILE - DO NOT EDIT!
-#
-# To update this file, run:
-#   bazel run //:gazelle_python_manifest.update
-
----
 manifest:
   modules_mapping:
     0aca9ce3d91742c5b361__mypyc: mypy
     annotated_doc: annotated_doc
     annotated_types: annotated_types
     anyio: anyio
+    build: build
     certifi: certifi
     click: click
+    colorama: colorama
     dns: dnspython
     dotenv: python_dotenv
     email_validator: email_validator
@@ -26,11 +22,7 @@ manifest:
     idna: idna
     iniconfig: iniconfig
     jinja2: jinja2
-    librt.base64: librt
-    librt.internal: librt
-    librt.strings: librt
-    librt.time: librt
-    librt.vecs: librt
+    librt: librt
     markdown_it: markdown_it_py
     markupsafe: markupsafe
     mdurl: mdurl
@@ -39,19 +31,23 @@ manifest:
     mypy_extensions: mypy_extensions
     mypyc: mypy
     packaging: packaging
+    pastel: pastel
     pathspec: pathspec
     pluggy: pluggy
+    poethepoet: poethepoet
     py: pytest
     pydantic: pydantic
     pydantic_core: pydantic_core
     pydantic_extra_types: pydantic_extra_types
     pydantic_settings: pydantic_settings
     pygments: pygments
+    pyproject_hooks: pyproject_hooks
     pytest: pytest
     python_multipart: python_multipart
     rich: rich
     rich_toolkit: rich_toolkit
     rignore: rignore
+    ruff: ruff
     sentry_sdk: sentry_sdk
     setuptools: setuptools
     shellingham: shellingham
@@ -67,4 +63,3 @@ manifest:
     yaml: pyyaml
   pip_repository:
     name: pypi
-integrity: f1f0434f8848e126584fc809f626c4169478afec41a40dbe8a4b83b18f74e55d

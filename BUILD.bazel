@@ -1,5 +1,5 @@
-load("@aspect_rules_py//uv/unstable:defs.bzl", "gazelle_python_manifest")
 load("@aspect_rules_py//py:defs.bzl", "py_library")
+load("@aspect_rules_py//uv/unstable:defs.bzl", "gazelle_python_manifest")
 load("@bazel_gazelle//:def.bzl", "gazelle", "gazelle_binary")
 
 # Empty target for the root workspace package override
