@@ -47,10 +47,5 @@ js_library(
     name = "eslintrc",
     srcs = ["eslint.config.js"],
     visibility = ["//visibility:public"],
-    deps = [
-        ":node_modules/@eslint/js",
-        ":node_modules/eslint-plugin-react-hooks",
-        ":node_modules/eslint-plugin-react-refresh",
-        ":node_modules/typescript-eslint",
-    ],
+    deps = [":node_modules"],
 )

@@ -1,4 +1,4 @@
-- [ ] Remove ESLint hardcoded deps
+- [ ] Add PR checks for linting, building, and testing
+- [ ] Add Autofix CI
 - [ ] Add Sentry
 - [ ] Add Vulture dead code analysis
-- [ ] Add Autofix CI
