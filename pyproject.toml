@@ -33,6 +33,8 @@ _gazelle = "bazel run //:gazelle"
 _update-module-overrides = "uv run python tools/update_module_overrides.py"
 build = "bazel build //..."
 test = "bazel test //..."
+format = "bazel run //tools/format"
+lint = "bazel build //tools/lint:all"
 
 [tool.poe.tasks.sync]
 help = "Sync Bazel BUILD files after adding and app, deps or packages"

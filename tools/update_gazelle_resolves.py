@@ -64,7 +64,11 @@ def update_build_file(resolve_lines: list[str]) -> None:
     """Replace the resolve block in BUILD.bazel with the new lines."""
     content = BUILD_FILE.read_text()
 
-    block = f"{RESOLVE_MARKER_START}\n" + "\n".join(resolve_lines) + f"\n{RESOLVE_MARKER_END}"
+    block = (
+        f"{RESOLVE_MARKER_START}\n"
+        + "\n".join(resolve_lines)
+        + f"\n{RESOLVE_MARKER_END}"
+    )
 
     pattern = re.compile(
         rf"^{re.escape(RESOLVE_MARKER_START)}$.*?^{re.escape(RESOLVE_MARKER_END)}$",
@@ -102,7 +106,9 @@ def main() -> None:
     resolve_lines = generate_resolve_lines(packages)
     update_build_file(resolve_lines)
 
-    print(f"Updated {BUILD_FILE.name} with resolve directives for: {', '.join(packages)}")
+    print(
+        f"Updated {BUILD_FILE.name} with resolve directives for: {', '.join(packages)}"
+    )
     for line in resolve_lines:
         print(f"  {line}")
 

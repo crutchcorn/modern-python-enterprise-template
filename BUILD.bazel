@@ -6,6 +6,11 @@ load("@npm//:defs.bzl", "npm_link_all_packages")
 # Link npm packages for the root workspace
 npm_link_all_packages(name = "node_modules")
 
+exports_files(
+    ["pyproject.toml"],
+    visibility = ["//visibility:public"],
+)
+
 # Empty target for the root workspace package override
 py_library(
     name = "root",
@@ -37,4 +42,9 @@ gazelle_binary(
 gazelle(
     name = "gazelle",
     gazelle = ":gazelle_binary",
+)
+
+alias(
+    name = "format",
+    actual = "//tools/format",
 )

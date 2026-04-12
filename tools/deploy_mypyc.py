@@ -10,6 +10,7 @@ import argparse
 import glob
 import os
 import shutil
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BAZEL_BIN = os.path.join(ROOT, ".bazel", "bin")
 PACKAGES_DIR = os.path.join(ROOT, "packages")
@@ -35,9 +36,7 @@ def deploy():
                     # Determine the package name from the directory structure
                     rel = os.path.relpath(root, mypyc_dir)  # e.g. "shared"
                     # Find matching source package
-                    src_pkg = glob.glob(
-                        os.path.join(PACKAGES_DIR, "*", "src", rel)
-                    )
+                    src_pkg = glob.glob(os.path.join(PACKAGES_DIR, "*", "src", rel))
                     if src_pkg:
                         dest = os.path.join(src_pkg[0], f)
                         shutil.copy2(os.path.join(root, f), dest)
@@ -46,7 +45,9 @@ def deploy():
 
 def clean():
     """Remove all deployed .so files from source packages."""
-    for pkg_src in glob.glob(os.path.join(PACKAGES_DIR, "*", "src", "**"), recursive=True):
+    for pkg_src in glob.glob(
+        os.path.join(PACKAGES_DIR, "*", "src", "**"), recursive=True
+    ):
         if _is_extension(os.path.basename(pkg_src)):
             os.remove(pkg_src)
             print(f"  removed: {os.path.relpath(pkg_src, ROOT)}")
@@ -54,7 +55,9 @@ def clean():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--clean", action="store_true", help="Remove deployed .so files")
+    parser.add_argument(
+        "--clean", action="store_true", help="Remove deployed .so files"
+    )
     args = parser.parse_args()
 
     if args.clean:

@@ -20,7 +20,7 @@ def read_pyproject_name(pyproject: Path) -> str | None:
     try:
         data = tomllib.loads(pyproject.read_text())
         return data.get("project", {}).get("name")
-    except (OSError, tomllib.TOMLDecodeError):
+    except OSError, tomllib.TOMLDecodeError:
         return None
 
 
@@ -85,7 +85,9 @@ def generate_override_lines(overrides: list[tuple[str, str]]) -> list[str]:
     """Generate the Starlark lines for uv.override_package calls."""
     lines: list[str] = []
     for name, target in overrides:
-        lines.append(f'uv.override_package(name = "{name}", lock = "//:uv.lock", target = "{target}")')
+        lines.append(
+            f'uv.override_package(name = "{name}", lock = "//:uv.lock", target = "{target}")'
+        )
     return lines
 
 

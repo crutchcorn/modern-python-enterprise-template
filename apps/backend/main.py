@@ -4,7 +4,10 @@ from shared import hello
 
 app = FastAPI()
 
-_shared_is_compiled = shared.__file__ is not None and not shared.__file__.endswith(".py")
+_shared_is_compiled = shared.__file__ is not None and not shared.__file__.endswith(
+    ".py"
+)
+
 
 @app.get("/")
 def read_root():

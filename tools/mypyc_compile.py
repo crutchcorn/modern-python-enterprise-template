@@ -41,9 +41,7 @@ def main() -> None:
             # Use mypyc's Python API directly (avoids subprocess + PATH issues)
             from mypyc.build import mypycify
 
-            src_paths = [
-                os.path.join(pkg_dir, os.path.basename(s)) for s in args.srcs
-            ]
+            src_paths = [os.path.join(pkg_dir, os.path.basename(s)) for s in args.srcs]
             ext_modules = mypycify(src_paths)
 
             if not ext_modules:
@@ -74,8 +72,10 @@ def main() -> None:
                     dest_name = f
                     pkg_prefix = args.package_name + "."
                     if f.startswith(pkg_prefix):
-                        dest_name = "__init__." + f[len(pkg_prefix):]
-                    shutil.copy2(os.path.join(root, f), os.path.join(out_pkg, dest_name))
+                        dest_name = "__init__." + f[len(pkg_prefix) :]
+                    shutil.copy2(
+                        os.path.join(root, f), os.path.join(out_pkg, dest_name)
+                    )
                     print(f"  compiled: {args.package_name}/{dest_name}")
 
 

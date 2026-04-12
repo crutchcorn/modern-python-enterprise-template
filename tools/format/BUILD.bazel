@@ -1,0 +1,27 @@
+"""Formatter binary definitions.
+
+This is in its own package so that loading-time symbols
+don't trigger eager fetches for builds that don't run format.
+"""
+
+load("@aspect_rules_lint//format:defs.bzl", "format_multirun")
+load("@npm//:prettier/package_json.bzl", prettier = "bin")
+
+package(default_visibility = ["//:__subpackages__"])
+
+prettier.prettier_binary(
+    name = "prettier",
+    env = {"BAZEL_BINDIR": "."},
+    fixed_args = [
+        "--loglevel=warn",
+    ],
+)
+
+format_multirun(
+    name = "format",
+    css = ":prettier",
+    html = ":prettier",
+    javascript = ":prettier",
+    python = "@aspect_rules_lint//format:ruff",
+    visibility = ["//:__subpackages__"],
+)

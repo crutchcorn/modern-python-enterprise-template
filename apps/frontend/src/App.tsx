@@ -1,11 +1,11 @@
-import { HelloWorld } from 'components'
+import { HelloWorld } from "components";
 
 function App() {
   return (
     <>
       <HelloWorld />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

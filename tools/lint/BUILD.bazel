@@ -1,0 +1,21 @@
+"""Linter binary definitions.
+
+This is in its own package so that loading-time symbols
+don't trigger eager fetches for builds that don't run lint.
+"""
+
+load("@npm//:eslint/package_json.bzl", eslint_bin = "bin")
+
+package(default_visibility = ["//:__subpackages__"])
+
+eslint_bin.eslint_binary(
+    name = "eslint_frontend",
+    data = ["//apps/frontend:eslintrc"],
+    fixed_args = ["--config=apps/frontend/eslint.config.js"],
+)
+
+eslint_bin.eslint_binary(
+    name = "eslint_components",
+    data = ["//packages/components:eslintrc"],
+    fixed_args = ["--config=packages/components/eslint.config.js"],
+)
