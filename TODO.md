@@ -1,4 +1,6 @@
+- [ ] OpenAPI TypeScript code generation for frontend API clients connected through Bazel
 - [ ] Add PR checks for linting, building, and testing
+- [ ] Add docker compose for backend deployment
 - [ ] Add Autofix CI
 - [ ] Add Sentry
 - [ ] Add Vulture dead code analysis

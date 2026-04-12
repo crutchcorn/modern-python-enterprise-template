@@ -7,6 +7,12 @@
 - MyPyC for compiling Python code to C for improved performance
 - GIL-free Python code for better concurrency
 - PyTest for testing
+- React frontend and monorepo packages for shared components and utilities
+    - Connected with Bazel for cached builds and tests
+    - ESLint for linting
+    - Prettier for formatting
+    - Vite for building and development server
+    - Vitest for testing
 
 # Install
 
