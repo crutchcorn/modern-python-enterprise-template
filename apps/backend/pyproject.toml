@@ -9,6 +9,9 @@ dependencies = [
     "shared"
 ]
 
+[tool.setuptools]
+py-modules = ["main", "export_openapi"]
+
 [dependency-groups]
 test = [
     "pytest>=9.0.3",
@@ -37,6 +40,7 @@ lint = "uv run ruff check ."
 typecheck = "uv run mypy ."
 test = "uv run pytest tests"
 format = "uv run ruff format ."
+export-openapi = "uv run python export_openapi.py -o openapi.json"
 
 [tool.poe.tasks.start]
 help = "Build mypyc extensions and start FastAPI in production mode"
