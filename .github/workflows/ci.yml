@@ -24,6 +24,13 @@ jobs:
 
       - name: Debug yq lockfile parsing
         run: |
+          # Check if pnpm install modified the lockfile
+          echo "=== Lockfile modifications ==="
+          git diff --stat pnpm-lock.yaml || true
+          git diff pnpm-lock.yaml | head -100 || true
+          echo "=== Lockfile checksum ==="
+          sha256sum pnpm-lock.yaml
+
           # Download the same yq version Bazel uses
           curl -fsSL https://github.com/mikefarah/yq/releases/download/v4.45.2/yq_linux_amd64 -o /tmp/yq
           chmod +x /tmp/yq
