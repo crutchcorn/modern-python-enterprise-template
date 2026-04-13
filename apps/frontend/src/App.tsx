@@ -1,21 +1,12 @@
-import { HelloWorld } from "components";
-import { useEffect, useState } from "react";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { PeopleView } from './views/people/people.view'
 
-function App() {
-  const [spec, setSpec] = useState<unknown>(null);
+const queryClient = new QueryClient()
 
-  useEffect(() => {
-    fetch("/openapi.json")
-      .then((res) => res.json())
-      .then(setSpec);
-  }, []);
-
+export function App() {
   return (
-    <>
-      <HelloWorld />
-      <pre>{JSON.stringify(spec, null, 2)}</pre>
-    </>
-  );
+    <QueryClientProvider client={queryClient}>
+      <PeopleView />
+    </QueryClientProvider>
+  )
 }
-
-export default App;
