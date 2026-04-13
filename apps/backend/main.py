@@ -23,9 +23,11 @@ _shared_is_compiled = shared.__file__ is not None and not shared.__file__.endswi
     ".py"
 )
 
+
 @app.get("/")
 def read_root():
     return {"message": hello()}
+
 
 @app.get("/debug/shared")
 def debug_shared():
@@ -34,15 +36,19 @@ def debug_shared():
         "compiled": _shared_is_compiled,
     }
 
+
 class Hobby(BaseModel):
     name: str
     id: str
 
+
 class CreateHobbyBody(BaseModel):
     new_hobbies: list[Hobby]
 
+
 class CreateHobbyResponse(BaseModel):
     hobbies: list[Hobby]
+
 
 @app.post("/{person_id}/hobbies")
 def create_hobbies(person_id: str, body: CreateHobbyBody) -> CreateHobbyResponse:

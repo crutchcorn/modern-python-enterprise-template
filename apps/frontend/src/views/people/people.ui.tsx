@@ -1,13 +1,13 @@
-import type { createPersonHobbies } from '../../services/people'
+import type { createPersonHobbies } from "../../services/people";
 
 interface PeopleUIProps {
-  personId: string
-  personHobbies: createPersonHobbies | undefined
-  addHobby: () => void
-  personHobbiesError: Error | null
-  isPersonHobbiesPending: boolean
-  hobbyInputVal: string
-  setHobbyInputVal: (val: string) => void
+  personId: string;
+  personHobbies: createPersonHobbies | undefined;
+  addHobby: () => void;
+  personHobbiesError: Error | null;
+  isPersonHobbiesPending: boolean;
+  hobbyInputVal: string;
+  setHobbyInputVal: (val: string) => void;
 }
 
 export function PeopleUI({
@@ -26,8 +26,8 @@ export function PeopleUI({
       <hr />
       <form
         onSubmit={(e) => {
-          e.preventDefault()
-          addHobby()
+          e.preventDefault();
+          addHobby();
         }}
       >
         <h2>Add new hobby</h2>
@@ -40,14 +40,16 @@ export function PeopleUI({
         </label>
         <button>Add hobby</button>
       </form>
-      {isPersonHobbiesPending ? 'Adding hobby...' : null}
+      {isPersonHobbiesPending ? "Adding hobby..." : null}
       {personHobbiesError ? <p>There was an error adding the hobby</p> : null}
       <hr />
       <h2 id="hobbies-heading">Hobbies</h2>
       {personHobbies?.length ? null : <p>There are no hobbies</p>}
       <ul aria-describedby="hobbies-heading" role="list">
-        {personHobbies?.map((hobby) => <li key={hobby.id}>{hobby.name}</li>)}
+        {personHobbies?.map((hobby) => (
+          <li key={hobby.id}>{hobby.name}</li>
+        ))}
       </ul>
     </div>
-  )
+  );
 }

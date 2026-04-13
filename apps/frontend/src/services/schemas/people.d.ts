@@ -4,178 +4,178 @@
  */
 
 export interface paths {
-    "/": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Read Root */
-        get: operations["read_root__get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+  "/": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/debug/shared": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Debug Shared */
-        get: operations["debug_shared_debug_shared_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    /** Read Root */
+    get: operations["read_root__get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/debug/shared": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/{person_id}/hobbies": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Create Hobbies */
-        post: operations["create_hobbies__person_id__hobbies_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    /** Debug Shared */
+    get: operations["debug_shared_debug_shared_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/{person_id}/hobbies": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
+    get?: never;
+    put?: never;
+    /** Create Hobbies */
+    post: operations["create_hobbies__person_id__hobbies_post"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
-    schemas: {
-        /** CreateHobbyBody */
-        CreateHobbyBody: {
-            /** New Hobbies */
-            new_hobbies: components["schemas"]["Hobby"][];
-        };
-        /** CreateHobbyResponse */
-        CreateHobbyResponse: {
-            /** Hobbies */
-            hobbies: components["schemas"]["Hobby"][];
-        };
-        /** HTTPValidationError */
-        HTTPValidationError: {
-            /** Detail */
-            detail?: components["schemas"]["ValidationError"][];
-        };
-        /** Hobby */
-        Hobby: {
-            /** Name */
-            name: string;
-            /** Id */
-            id: string;
-        };
-        /** ValidationError */
-        ValidationError: {
-            /** Location */
-            loc: (string | number)[];
-            /** Message */
-            msg: string;
-            /** Error Type */
-            type: string;
-            /** Input */
-            input?: unknown;
-            /** Context */
-            ctx?: Record<string, never>;
-        };
+  schemas: {
+    /** CreateHobbyBody */
+    CreateHobbyBody: {
+      /** New Hobbies */
+      new_hobbies: components["schemas"]["Hobby"][];
     };
-    responses: never;
-    parameters: never;
-    requestBodies: never;
-    headers: never;
-    pathItems: never;
+    /** CreateHobbyResponse */
+    CreateHobbyResponse: {
+      /** Hobbies */
+      hobbies: components["schemas"]["Hobby"][];
+    };
+    /** HTTPValidationError */
+    HTTPValidationError: {
+      /** Detail */
+      detail?: components["schemas"]["ValidationError"][];
+    };
+    /** Hobby */
+    Hobby: {
+      /** Name */
+      name: string;
+      /** Id */
+      id: string;
+    };
+    /** ValidationError */
+    ValidationError: {
+      /** Location */
+      loc: (string | number)[];
+      /** Message */
+      msg: string;
+      /** Error Type */
+      type: string;
+      /** Input */
+      input?: unknown;
+      /** Context */
+      ctx?: Record<string, never>;
+    };
+  };
+  responses: never;
+  parameters: never;
+  requestBodies: never;
+  headers: never;
+  pathItems: never;
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    read_root__get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-        };
+  read_root__get: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    debug_shared_debug_shared_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    requestBody?: never;
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
+        content: {
+          "application/json": unknown;
         };
+      };
     };
-    create_hobbies__person_id__hobbies_post: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                person_id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateHobbyBody"];
-            };
-        };
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CreateHobbyResponse"];
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
-                };
-            };
-        };
+  };
+  debug_shared_debug_shared_get: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
+    requestBody?: never;
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": unknown;
+        };
+      };
+    };
+  };
+  create_hobbies__person_id__hobbies_post: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        person_id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CreateHobbyBody"];
+      };
+    };
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["CreateHobbyResponse"];
+        };
+      };
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"];
+        };
+      };
+    };
+  };
 }
