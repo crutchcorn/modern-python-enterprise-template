@@ -37,11 +37,7 @@ export default defineConfig({
       provider: playwright({
         launchOptions: {
           args: process.env.PLAYWRIGHT_BROWSERS_PATH
-            ? [
-                "--no-sandbox",
-                "--disable-crashpad",
-                "--headless=new"
-              ]
+            ? ["--no-sandbox", "--disable-crashpad", "--headless=new"]
             : [],
         },
       }),
