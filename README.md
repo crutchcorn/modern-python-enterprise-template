@@ -13,6 +13,7 @@
     - Prettier for formatting
     - Vite for building and development server
     - Vitest for testing
+- CI pipeline for running tests and linting on both backend and frontend with caching and other optimizations
 
 # Install
 
