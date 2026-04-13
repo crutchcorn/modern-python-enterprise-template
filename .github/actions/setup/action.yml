@@ -22,7 +22,11 @@ runs:
       shell: bash
       run: uv python install
 
-    - uses: pnpm/action-setup@v6
+    # v6 uses pnpm 11 which writes a second YAML document to pnpm-lock.yaml,
+    # breaking Bazel's yq-based lockfile parsing.
+    # See: https://github.com/pnpm/action-setup/issues/225
+    # See: https://github.com/aspect-build/rules_js/issues/2798
+    - uses: pnpm/action-setup@v5
       with:
         cache: true
 
