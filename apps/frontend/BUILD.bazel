@@ -26,7 +26,7 @@ SRCS = SRC_FILES + CONFIG_FILES
 
 vite_bin.vite(
     name = "build",
-    srcs = SRCS + [":node_modules"],
+    srcs = SRCS + [":node_modules", "//apps/backend:openapi_spec"],
     args = ["build"],
     chdir = package_name(),
     out_dirs = ["dist"],

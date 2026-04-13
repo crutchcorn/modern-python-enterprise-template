@@ -1,4 +1,4 @@
-load("@aspect_rules_py//py:defs.bzl", "py_library")
+load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
 
 py_library(
     name = "backend",
@@ -8,4 +8,19 @@ py_library(
         "//packages/shared/src/shared",
         "@pypi//fastapi",
     ],
+)
+
+py_binary(
+    name = "export_openapi",
+    srcs = ["export_openapi.py"],
+    imports = ["."],
+    deps = [":backend"],
+)
+
+genrule(
+    name = "openapi_spec",
+    outs = ["openapi_spec.json"],
+    cmd = "$(location :export_openapi) -o $@",
+    tools = [":export_openapi"],
+    visibility = ["//visibility:public"],
 )
