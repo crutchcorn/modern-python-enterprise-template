@@ -22,6 +22,27 @@ jobs:
           disk-cache: ${{ github.workflow }}
           cache-save: ${{ github.ref == 'refs/heads/main' }}
 
+      - name: Debug yq lockfile parsing
+        run: |
+          # Download the same yq version Bazel uses
+          curl -fsSL https://github.com/mikefarah/yq/releases/download/v4.45.2/yq_linux_amd64 -o /tmp/yq
+          chmod +x /tmp/yq
+          /tmp/yq --version
+          /tmp/yq pnpm-lock.yaml -o=json > /tmp/lockfile.json 2>&1
+          echo "JSON output size: $(wc -c < /tmp/lockfile.json)"
+          python3 -c "
+          import json, sys
+          with open('/tmp/lockfile.json') as f:
+              content = f.read()
+          print(f'Total length: {len(content)}')
+          try:
+              json.loads(content)
+              print('Valid JSON')
+          except json.JSONDecodeError as e:
+              print(f'INVALID JSON at offset {e.pos}: {e.msg}')
+              print(f'Context: {repr(content[max(0,e.pos-30):e.pos+30])}')
+          "
+
       - name: Build
         run: bazel build //...
 
