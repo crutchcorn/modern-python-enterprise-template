@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: ./.github/actions/setup
+        with:
+          disk-cache: ${{ github.workflow }}
+          cache-save: ${{ github.ref == 'refs/heads/main' }}
+
+      - name: Build
+        run: bazel build //...
+
+      - name: Test
+        run: bazel test //...
