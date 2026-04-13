@@ -16,23 +16,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: pnpm/action-setup@v6
-
-      - uses: actions/setup-node@v4
+      - uses: ./.github/actions/setup
         with:
-          node-version: 22
-          cache: pnpm
-
-      - name: Install npm dependencies
-        run: pnpm install --frozen-lockfile
-
-      - uses: bazel-contrib/setup-bazel@0.19.0
-        with:
-          bazelisk-cache: true
           disk-cache: autofix
-          repository-cache: true
           cache-save: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Format

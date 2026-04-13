@@ -1,0 +1,44 @@
+name: Setup
+description: Checkout, install uv, pnpm, Node, npm deps, and configure Bazel
+
+inputs:
+  disk-cache:
+    description: Bazel disk cache key
+    required: false
+    default: ""
+  cache-save:
+    description: Whether to save Bazel caches
+    required: false
+    default: "true"
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v4
+
+    - uses: astral-sh/setup-uv@v7
+      with:
+        enable-cache: true
+
+    - name: Set up Python
+      shell: bash
+      run: uv python install
+
+    - uses: pnpm/action-setup@v6
+      with:
+        cache: true
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 22
+
+    - name: Install npm dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile
+
+    - uses: bazel-contrib/setup-bazel@0.19.0
+      with:
+        bazelisk-cache: true
+        disk-cache: ${{ inputs.disk-cache }}
+        repository-cache: true
+        cache-save: ${{ inputs.cache-save }}
