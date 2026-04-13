@@ -24,9 +24,14 @@ CONFIG_FILES = glob([
 
 SRCS = SRC_FILES + CONFIG_FILES
 
+js_library(
+    name = "srcs",
+    srcs = SRCS,
+)
+
 vite_bin.vite(
     name = "build",
-    srcs = SRCS + [":node_modules", "//apps/backend:openapi_spec"],
+    srcs = [":srcs", ":node_modules", "//apps/backend:openapi_spec"],
     args = ["build"],
     chdir = package_name(),
     out_dirs = ["dist"],
@@ -36,11 +41,27 @@ vite_bin.vite(
 vitest_bin.vitest_test(
     name = "test",
     args = [
-        "run",
+        "--watch=false",
         "--config=vite.config.ts",
+        "--silent=passed-only",
     ],
     chdir = package_name(),
-    data = SRCS + [":node_modules"],
+    data = [
+        ":srcs",
+        ":node_modules",
+        "//tools:chromium",
+        "//tools:chromium_root",
+    ],
+    env = {
+        "PLAYWRIGHT_BROWSERS_PATH": "../../$(rootpath //tools:chromium_root)/..",
+        "JS_BINARY__PATCH_NODE_FS": "0",
+    },
+    local = True,
+    no_copy_to_bin = [
+        "//tools:chromium",
+        "//tools:chromium_root",
+    ],
+    tags = ["requires-network"],
 )
 
 js_library(

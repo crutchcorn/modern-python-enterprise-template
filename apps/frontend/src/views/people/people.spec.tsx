@@ -3,7 +3,7 @@ import { renderContainer } from "../../utils/testing-utils/render-container";
 import { PeopleView } from "./people.view";
 import { screen, waitFor } from "@testing-library/react";
 import { worker } from "../../utils/testing-utils/server";
-import { userEvent } from "@vitest/browser/context";
+import { userEvent } from "@testing-library/user-event";
 import { http } from "../../utils/testing-utils/people-mocks.ts";
 
 const user = userEvent.setup();

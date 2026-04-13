@@ -34,7 +34,13 @@ export default defineConfig({
     setupFiles: ["./src/utils/testing-utils/setup.ts"],
     fileParallelism: false,
     browser: {
-      provider: playwright(),
+      provider: playwright({
+        launchOptions: {
+          args: process.env.PLAYWRIGHT_BROWSERS_PATH
+            ? ["--no-sandbox", "--disable-crashpad"]
+            : [],
+        },
+      }),
       enabled: true,
       instances: [{ browser: "chromium" }],
     },
