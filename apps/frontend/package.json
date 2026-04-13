@@ -8,7 +8,8 @@
     "gen:openapi": "npx openapi-typescript ../backend/openapi.json -o ./src/services/schemas/people.d.ts",
     "build": "pnpm gen:openapi && tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest --watch=false --silent=passed-only"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.99.0",
@@ -43,5 +44,10 @@
     "vite": "^8.0.4",
     "vite-plugin-static-copy": "^4.0.1",
     "vitest": "^4.1.4"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

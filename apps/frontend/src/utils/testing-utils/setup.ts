@@ -1,6 +1,15 @@
-import { afterEach, beforeAll } from "vitest";
-import { worker } from "./server";
+import "@testing-library/jest-dom/vitest";
+import { cleanup } from "@testing-library/react";
+import { afterAll, afterEach, beforeAll } from "vitest";
+import { worker } from './server'
 
-beforeAll(() => worker.start());
+beforeAll(async () => {
+  await worker.start();
+});
 
-afterEach(() => worker.resetHandlers());
+afterEach(() => {
+  worker.resetHandlers();
+  cleanup();
+});
+
+afterAll(() => worker.stop());

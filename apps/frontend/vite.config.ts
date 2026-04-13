@@ -1,7 +1,8 @@
 import path from "node:path";
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { viteStaticCopy } from "vite-plugin-static-copy";
+import { defineConfig } from "vitest/config";
+import { playwright } from "@vitest/browser-playwright";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -27,5 +28,15 @@ export default defineConfig({
       process.env.BAZEL_BINDIR && process.env.BAZEL_PACKAGE
         ? path.resolve(process.cwd(), "dist")
         : undefined,
+  },
+  test: {
+    retry: 3,
+    setupFiles: ["./src/utils/testing-utils/setup.ts"],
+    fileParallelism: false,
+    browser: {
+      provider: playwright(),
+      enabled: true,
+      instances: [{ browser: "chromium" }],
+    },
   },
 });
