@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 
 const getBaseUrl = (env: ImportMetaEnv) => {
-  return env.BACKEND_BASE_URL ?? `http://localhost:8000`;
+  return env.VITE_BACKEND_BASE_URL ?? `http://localhost:8000`;
 };
 
 export const useNetworkingParams = () => {
