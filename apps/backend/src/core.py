@@ -47,6 +47,7 @@ def debug_shared():
 async def trigger_error():
     division_by_zero = 1 / 0
 
+
 class Hobby(BaseModel):
     name: str
     id: str

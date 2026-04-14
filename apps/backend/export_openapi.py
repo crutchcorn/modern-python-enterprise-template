@@ -6,6 +6,7 @@ import sys
 
 from src.core import app
 
+
 def export_openapi(output: str | None = None) -> None:
     spec = app.openapi()
     text = json.dumps(spec, indent=2)
