@@ -1,3 +1,4 @@
+import { sentryVitePlugin } from "@sentry/vite-plugin";
 import path from "node:path";
 import react from "@vitejs/plugin-react";
 import { viteStaticCopy } from "vite-plugin-static-copy";
@@ -19,6 +20,10 @@ export default defineConfig({
             },
           ],
     }),
+    sentryVitePlugin({
+      org: "corbin-crutchley",
+      project: "javascript-react",
+    }),
   ],
   root: import.meta.dirname,
   build: {
@@ -30,6 +35,8 @@ export default defineConfig({
       process.env.BAZEL_BINDIR && process.env.BAZEL_PACKAGE
         ? path.resolve(process.cwd(), "dist")
         : undefined,
+
+    sourcemap: true,
   },
   test: {
     retry: 3,

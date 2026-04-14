@@ -50,6 +50,14 @@ export function PeopleUI({
           <li key={hobby.id}>{hobby.name}</li>
         ))}
       </ul>
+      <button
+        style={{ marginTop: "100vh" }}
+        onClick={() => {
+          throw new Error("This is your first error!");
+        }}
+      >
+        Break the world
+      </button>
     </div>
   );
 }

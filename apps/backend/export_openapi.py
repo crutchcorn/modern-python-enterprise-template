@@ -4,8 +4,7 @@ import argparse
 import json
 import sys
 
-from main import app
-
+from src.core import app
 
 def export_openapi(output: str | None = None) -> None:
     spec = app.openapi()

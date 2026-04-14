@@ -47,6 +47,7 @@ version = "0.0.1"
 source = { editable = "apps/backend" }
 dependencies = [
     { name = "fastapi", extra = ["standard"] },
+    { name = "sentry-sdk" },
     { name = "shared" },
 ]
 
@@ -67,6 +68,7 @@ test = [
 [package.metadata]
 requires-dist = [
     { name = "fastapi", extras = ["standard"], specifier = ">=0.135.3" },
+    { name = "sentry-sdk", specifier = ">=2.57.0" },
     { name = "shared", editable = "packages/shared" },
 ]
 
