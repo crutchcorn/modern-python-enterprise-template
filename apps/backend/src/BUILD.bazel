@@ -1,0 +1,16 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library")
+
+py_library(
+    name = "src",
+    srcs = [
+        "core.py",
+        "sentry.py",
+    ],
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//packages/shared/src/shared",
+        "@pypi//fastapi",
+        "@pypi//pydantic",
+        "@pypi//sentry_sdk",
+    ],
+)

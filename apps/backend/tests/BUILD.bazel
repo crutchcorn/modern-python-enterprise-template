@@ -1,10 +1,16 @@
 load("@aspect_rules_py//py:defs.bzl", "py_test")
 
+# gazelle:resolve py src //apps/backend/src
+# gazelle:resolve py src.core //apps/backend/src
+# gazelle:resolve py src.core.app //apps/backend/src
+# gazelle:resolve py src.sentry //apps/backend/src
+
 py_test(
     name = "test_main",
     srcs = ["test_main.py"],
+    imports = [".."],  # keep
     deps = [
-        "//apps/backend",
+        "//apps/backend/src",  # keep
         "@pypi//fastapi",
         "@pypi//httpx",  # keep: required by fastapi.testclient at runtime
     ],

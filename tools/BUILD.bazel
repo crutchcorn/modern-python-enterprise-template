@@ -12,6 +12,7 @@ py_library(
         "deploy_mypyc.py",
         "mypyc_compile.py",
         "update_gazelle_resolves.py",
+        "update_module_overrides.py",
     ],
     visibility = ["//:__subpackages__"],
     deps = [
@@ -64,4 +65,10 @@ alias(
         "//conditions:default": "@chromium-linux-x86_64//:.pw_root",
     }),
     visibility = ["//visibility:public"],
+)
+
+py_binary(
+    name = "update_module_overrides",
+    srcs = ["update_module_overrides.py"],
+    visibility = ["//:__subpackages__"],
 )

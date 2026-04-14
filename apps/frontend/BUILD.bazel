@@ -31,7 +31,11 @@ js_library(
 
 vite_bin.vite(
     name = "build",
-    srcs = [":srcs", ":node_modules", "//apps/backend:openapi_spec"],
+    srcs = [
+        ":node_modules",
+        ":srcs",
+        "//apps/backend:openapi_spec",
+    ],
     args = ["build"],
     chdir = package_name(),
     out_dirs = ["dist"],
@@ -47,8 +51,8 @@ vitest_bin.vitest_test(
     ],
     chdir = package_name(),
     data = [
-        ":srcs",
         ":node_modules",
+        ":srcs",
         "//tools:chromium",
         "//tools:chromium_root",
     ],

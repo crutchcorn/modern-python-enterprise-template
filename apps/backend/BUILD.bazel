@@ -1,20 +1,28 @@
 load("@aspect_rules_py//py:defs.bzl", "py_binary", "py_library")
 
+# gazelle:resolve py src //apps/backend/src
+# gazelle:resolve py src.core //apps/backend/src
+# gazelle:resolve py src.core.app //apps/backend/src
+# gazelle:resolve py src.sentry //apps/backend/src
+
 py_library(
     name = "backend",
-    srcs = ["main.py"],
-    visibility = ["//visibility:public"],
-    deps = [
-        "//packages/shared/src/shared",
-        "@pypi//fastapi",
+    srcs = [
+        "export_openapi.py",
+        "main.py",
     ],
+    visibility = ["//visibility:public"],
+    deps = ["//apps/backend/src"],
 )
 
 py_binary(
     name = "export_openapi",
     srcs = ["export_openapi.py"],
-    imports = ["."],
-    deps = [":backend"],
+    imports = ["."],  # keep
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//apps/backend/src",  # keep
+    ],
 )
 
 genrule(
