@@ -2,7 +2,7 @@
 
 This is a template for modern Python enterprise applications, featuring a monorepo structure with a Python backend and a React frontend. The template includes various tools and optimizations for development, testing, and deployment.
 
-This project has been deployed on free hosting via Render and Netlify. You can check out the live demos here, but keep in mind that the free hosting plans may have limitations such as cold starts, limited resources, and potential downtime:
+You can check out the live demos here:
 
 - [Backend API Documentation](https://modern-python-enterprise-template.onrender.com/docs)
 - [Frontend Application](https://modern-python-enterprise-template.netlify.app)
@@ -21,20 +21,23 @@ This project has been deployed on free hosting via Render and Netlify. You can c
     - ESLint for linting
     - Prettier for formatting
     - Vite for building and development server
-    - Vitest for testing
+    - Vitest Browser Mode for real-world in-browser integration testing
+    - Auto-generated types for TypeScript from the FastAPI schema
 - CI pipeline for running tests and linting on both backend and frontend with caching and other optimizations
+- Sentry for error tracking both in the backend and frontend
+- Per-branch deployments via Render and Netlify
 
 ## Install
 
-- Install Bazelisk: https://github.com/bazelbuild/bazelisk?tab=readme-ov-file#installation
-- Install UV: https://docs.astral.sh/uv/getting-started/installation/
-- Install Node: https://nodejs.org/en/download 
+- [Install Bazelisk](https://github.com/bazelbuild/bazelisk?tab=readme-ov-file#installation)
+- [Install UV](https://docs.astral.sh/uv/getting-started/installation/)
+- [Install Node](https://nodejs.org/en/download) 
 
 ```shell
 bazel # To install Bazel via Bazelisk
 uv tool install poethepoet
 uv tool install ruff
-corepack enable # To enable Corepack for managing Node package managers
+corepack enable # To install PNPM via Node
 ```
 
 ## Usage
