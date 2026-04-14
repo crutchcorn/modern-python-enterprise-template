@@ -1,3 +1,4 @@
+import os
 import shared
 from fastapi import FastAPI
 from shared import hello
@@ -10,6 +11,11 @@ origins = [
     "http://localhost",
     "http://localhost:5173",
 ]
+
+# If a FRONTEND_ORIGIN environment variable is set, add it to the list of allowed origins
+frontend_origin = os.getenv("FRONTEND_ORIGIN")
+if frontend_origin:
+    origins.append(frontend_origin)
 
 app.add_middleware(
     CORSMiddleware,
