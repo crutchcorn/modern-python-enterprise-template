@@ -128,3 +128,15 @@ http_archive(
         "touch .pw_root",
     ],
 )
+
+http_archive(
+    name = "chromium-windows-x86_64",
+    url = "https://cdn.playwright.dev/builds/cft/147.0.7727.15/win64/chrome-win64.zip",
+    sha256 = "61f2a4b00a264a2f4311a3d4c45c3d13505aa33f57ba458e2f20918d5fcd0f18",
+    build_file_content = CHROMIUM_BUILD_FILE,
+    patch_cmds = [
+        "mkdir -p chromium-1217",
+        "mv chrome-win64 chromium-1217/",
+        "touch .pw_root",
+    ],
+)
