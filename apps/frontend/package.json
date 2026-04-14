@@ -7,6 +7,7 @@
     "dev": "vite",
     "gen:openapi": "npx openapi-typescript ../backend/openapi.json -o ./src/services/schemas/people.d.ts",
     "build": "pnpm gen:openapi && tsc -b && vite build",
+    "build:nogen": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest --watch=false --silent=passed-only"
