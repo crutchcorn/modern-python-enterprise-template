@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [
     react(),
     viteStaticCopy({
-      targets: [
+      targets: process.env.NETLIFY ? [] : [
         {
           src: "../backend/openapi{,_spec}.json",
           dest: ".",
